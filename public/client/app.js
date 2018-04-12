@@ -12,7 +12,6 @@ import './app.scss'
 import Home from './js/components/Home.js'
 import Header from './js/components/common/Header.js'
 import Footer from './js/components/common/Footer.js'
-import LoginForm from './js/components/LoginForm.js'
 
 import store from './js/redux/store/index'
 

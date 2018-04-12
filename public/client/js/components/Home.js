@@ -1,14 +1,10 @@
 import React, { Component } from 'react'
-import fb from '../Database'
-
 import { connect } from 'react-redux'
 import { bindActionCreators } from "redux"
-import { fetchAll, loginUserSuccess } from "../redux/actions/index"
+import { fetchAll } from "../redux/actions/index"
 
 import image from '../../img/four.jpg';
 import Posts from './Posts.js'
-
-import LoginForm from './LoginForm.js'
 
 var bgStyle = {
   width: "100vw",
@@ -19,11 +15,6 @@ var bgStyle = {
 class Home extends Component {
   constructor(props){
     super(props)
-    fb.auth().onAuthStateChanged(user => {
-      if(user){
-        this.props.loginUserSuccess(user.displayName)
-      }
-    })
 
     const URL = 'https://jsonplaceholder.typicode.com/posts'
     this.props.fetchAll(URL)
@@ -33,7 +24,7 @@ class Home extends Component {
     return (
       <div className="bg" style={bgStyle}>
         <div className="home-wrapper">
-          <LoginForm />
+          <Posts/>
         </div>
       </div>
     )
@@ -41,7 +32,7 @@ class Home extends Component {
 }
 
 const mapDispatchToProps = dispatch => {
-  return bindActionCreators({fetchAll, loginUserSuccess}, dispatch)
+  return bindActionCreators({fetchAll}, dispatch)
 }
 
 export default connect(null, mapDispatchToProps)(Home);

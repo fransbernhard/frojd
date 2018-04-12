@@ -1,6 +1,4 @@
 import * as types from "../action-types/index";
-// import firebase from 'firebase'
-import fb from '../../Database'
 
 export const fetchAll = (URL) => {
   return (dispatch) => {
@@ -27,24 +25,5 @@ const fetchPostsSuccess = payload => {
   return {
     type: types.FETCH_POSTS_SUCCESS,
     payload
-  }
-}
-
-export const loginUserSuccess = payload => {
-  return {
-    type: types.USER_LOGIN_SUCCESS,
-    payload
-  }
-}
-
-export const loginUser = (email, password) => {
-  return (dispatch) => {
-    fb.auth().signInWithEmailAndPassword(email, password)
-    .then((user) => {
-      const currentUsr = fb.auth().currentUser
-      dispatch(loginUserSuccess(currentUsr.displayName)) // set state
-    }).catch(err => {
-      console.log(err);
-    })
   }
 }
