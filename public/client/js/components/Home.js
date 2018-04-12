@@ -1,30 +1,27 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from "redux"
-import { fetchAll } from "../redux/actions/index"
+import { fetchPostsSuccess, fetchOffices } from "../redux/actions/index"
 
 import image from '../../img/four.jpg';
-import Posts from './Posts.js'
+import Table from './Table.js'
+import Header from './Header.js'
 
-var bgStyle = {
-  width: "100vw",
-  minHeight: "90vh",
-  backgroundImage: "url(" + image + ")"
-}
+import data from '../../data.json'
 
 class Home extends Component {
   constructor(props){
     super(props)
-
-    const URL = 'https://jsonplaceholder.typicode.com/posts'
-    this.props.fetchAll(URL)
+    this.props.fetchPostsSuccess(data)
+    this.props.fetchOffices(data)
   }
 
   render(){
     return (
-      <div className="bg" style={bgStyle}>
+      <div className="bg">
         <div className="home-wrapper">
-          <Posts/>
+          <Header />
+          <Table/>
         </div>
       </div>
     )
@@ -32,7 +29,7 @@ class Home extends Component {
 }
 
 const mapDispatchToProps = dispatch => {
-  return bindActionCreators({fetchAll}, dispatch)
+  return bindActionCreators({fetchPostsSuccess, fetchOffices}, dispatch)
 }
 
 export default connect(null, mapDispatchToProps)(Home);

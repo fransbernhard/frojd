@@ -1,6 +1,6 @@
 import { FETCH_POSTS_SUCCESS } from "../action-types/index"
 
-const posts = (state = [], action) => {
+const rows = (state = [], action) => {
   switch (action.type) {
     case FETCH_POSTS_SUCCESS:
       return action.payload
@@ -9,4 +9,4 @@ const posts = (state = [], action) => {
   }
 }
 
-export default posts
+export default rows

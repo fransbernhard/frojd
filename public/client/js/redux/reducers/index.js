@@ -1,10 +1,12 @@
 import { combineReducers } from 'redux'
-import fetch from './fetch'
-import posts from './posts'
+import rows from './rows'
+import office from './office'
+import sok from './sok'
 
 const app = combineReducers({
-  fetch,
-  posts
+  rows,
+  office,
+  sok
 })
 
-export default app;
+export default app

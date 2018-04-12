@@ -10,9 +10,6 @@ import {
 import './app.scss'
 
 import Home from './js/components/Home.js'
-import Header from './js/components/common/Header.js'
-import Footer from './js/components/common/Footer.js'
-
 import store from './js/redux/store/index'
 
 const App = () => {
@@ -20,7 +17,6 @@ const App = () => {
     <Provider store={store}>
       <Router>
         <div>
-          <Header />
           <Switch>
             <Route exact path={'/'} component={Home}/>
             <Route render={() => { return <Redirect to="/" />}} />
