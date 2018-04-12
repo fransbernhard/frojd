@@ -14,6 +14,13 @@ export const updateSearch = payload => {
   }
 }
 
+export const updateFilter = payload => {
+  return {
+    type: types.UPDATE_FILTER,
+    payload
+  }
+}
+
 export const fetchOffices = payload => {
   var allOffices = []
   payload.map(pay =>

@@ -3,7 +3,7 @@ import image from '../../img/search.png';
 
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { updateSearch } from '../redux/actions';
+import { updateSearch, updateFilter } from '../redux/actions';
 
 var searchIconStyle = {
   padding: "2rem",
@@ -19,22 +19,23 @@ class Header extends Component {
 
   constructor(props){
     super(props)
-
     this.handleFilterClick = this.handleFilterClick.bind(this)
     this.handleSearchInput = this.handleSearchInput.bind(this)
-    this.handleChange = this.handleChange.bind(this)
+    this.handleFilterChange = this.handleFilterChange.bind(this)
   }
 
   handleSearchInput(e){
     this.props.updateSearch(e.target.value.substr(0, 20).toLowerCase())
   }
 
-  handleChange(e){
+  handleFilterChange(e){
     console.log(e.target.value)
+    this.props.updateFilter(e.target.value.toLowerCase())
   }
 
   handleFilterClick(e){
     e.preventDefault()
+    console.log("FILTER CLICKED");
   }
 
   render(){
@@ -49,7 +50,7 @@ class Header extends Component {
           />
         </div>
 
-        <select className="btn" style={styli} onChange={this.handleChange}>
+        <select className="btn" style={styli} onChange={this.handleFilterChange}>
           {this.props.office.map((off, i) =>
  						<option key={i} value={off}>{off}</option>
  					)}
@@ -69,7 +70,7 @@ const mapStateToProps = state => {
 }
 
 const mapDispatchToProps = dispatch => {
-  return bindActionCreators({ updateSearch }, dispatch)
+  return bindActionCreators({ updateSearch, updateFilter }, dispatch)
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Header);
