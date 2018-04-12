@@ -14,7 +14,9 @@ li {
 }
 
 .bg {
-  @include flexCenterCenter;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
   min-height: 100vh;
   width: 100vw;
 }
@@ -22,8 +24,11 @@ li {
 .home-wrapper {
   display: flex;
   flex-flow: column;
-  width: 80vw;
-  border: 1px solid black;
+  width: 100%;
+  padding-top: 3rem;
+  @include respond-to(medium) {
+    width: 80vw;
+  }
 }
 
 .post-ul {
@@ -45,9 +50,4 @@ li {
 
 .searchIcon {
   @include bg;
-}
-
-th {
-  padding: 0.5rem;
-  border: 1px solid black;
 }
