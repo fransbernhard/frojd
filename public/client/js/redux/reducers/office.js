@@ -5,7 +5,7 @@ const office = (state = [], action) => {
     case FETCH_OFFICES:
       return action.payload
     default:
-      return {...state}
+      return state
   }
 }
 

@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import image from '../../img/search.png';
 
-import {connect} from 'react-redux';
-import {bindActionCreators} from 'redux';
-import {searching} from '../redux/actions';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { updateSearch } from '../redux/actions';
 
 var searchIconStyle = {
   padding: "2rem",
@@ -26,15 +26,15 @@ class Header extends Component {
   }
 
   handleSearchInput(e){
-    console.log(e.target.value);
-  }
-
-  handleFilterClick(e){
-    e.preventDefault()
+    this.props.updateSearch(e.target.value.substr(0, 20).toLowerCase())
   }
 
   handleChange(e){
     console.log(e.target.value)
+  }
+
+  handleFilterClick(e){
+    e.preventDefault()
   }
 
   render(){
@@ -69,7 +69,7 @@ const mapStateToProps = state => {
 }
 
 const mapDispatchToProps = dispatch => {
-  return bindActionCreators({ searching }, dispatch)
+  return bindActionCreators({ updateSearch }, dispatch)
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Header);

@@ -3,6 +3,12 @@ import { connect } from "react-redux";
 
 class Table extends Component {
 	render(){
+		let filteredSearch = this.props.rows.filter(
+			(row) => {
+				let nameString = row.firstName + " " + row.lastName
+				return nameString.toLowerCase().indexOf(this.props.searchWord) !== -1
+			}
+		)
 	  return (
       <table>
 			 <tbody>
@@ -12,12 +18,12 @@ class Table extends Component {
 					 <th>Office</th>
 					 <th>Email</th>
 				 </tr>
-				 {this.props.rows.map((post, i) =>
+				 {filteredSearch.map((row, i) =>
 						<tr key={i}>
-							<th>{post.firstName}</th>
-							<th>{post.title}</th>
-							<th>{post.office}</th>
-							<th>{post.email}</th>
+							<th>{row.firstName.concat(' ', row.lastName)}</th>
+							<th>{row.title}</th>
+							<th>{row.office}</th>
+							<th>{row.email}</th>
 						</tr>
 					)}
 				</tbody>
@@ -29,7 +35,7 @@ class Table extends Component {
 const mapStateToProps = state => {
   return {
 		rows: state.rows,
-		search: state.search
+		searchWord: state.searchWord
 	}
 }
 

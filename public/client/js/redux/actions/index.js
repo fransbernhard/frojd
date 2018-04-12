@@ -7,10 +7,10 @@ export const fetchPostsSuccess = payload => {
   }
 }
 
-export const searching = value => {
+export const updateSearch = payload => {
   return {
-    type: types.SEARCH,
-    value
+    type: types.UPDATE_SEARCHWORD,
+    payload
   }
 }
 
@@ -20,7 +20,6 @@ export const fetchOffices = payload => {
     allOffices.push(pay['office'])
   )
   const offices = [...new Set(allOffices)];
-  console.log("ARR: " + offices);
 
   return {
     type: types.FETCH_OFFICES,

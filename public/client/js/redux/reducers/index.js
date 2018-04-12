@@ -1,12 +1,12 @@
 import { combineReducers } from 'redux'
 import rows from './rows'
 import office from './office'
-import sok from './sok'
+import searchWord from './searchWord'
 
 const app = combineReducers({
   rows,
   office,
-  sok
+  searchWord
 })
 
 export default app
