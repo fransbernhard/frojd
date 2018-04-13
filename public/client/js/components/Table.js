@@ -1,13 +1,21 @@
 import React, {Component} from 'react'
 import { connect } from "react-redux"
+import { bindActionCreators } from "redux"
+import { updateFilter } from "../redux/actions/index"
+
+import mailImg from '../../img/mail-icon.png'
+
+var s = {
+	width: '25%'
+}
 
 class Table extends Component {
 
 	render(){
 		let searchRes
 
+		// SEARCH LOGIC
 		if (this.props.filterWord != "" && this.props.searchWord != "") {
-			console.log("BOTH EXISTS");
 			searchRes = this.props.rows.filter(
 				(row) => {
 					let nameString = row.firstName + " " + row.lastName
@@ -19,16 +27,19 @@ class Table extends Component {
 				}
 			)
 		} else if(this.props.searchWord != ""){
-			console.log("SEARCHWORK EXISTS");
 			searchRes = this.props.rows.filter(
 				(row) => {
 					let nameString = row.firstName + " " + row.lastName
-					console.log("HEHE: " + nameString.toLowerCase().indexOf(this.props.searchWord) !== -1);
 					return nameString.toLowerCase().indexOf(this.props.searchWord) !== -1
 				}
 			)
+		} else if (this.props.filterWord == "offices"){
+			searchRes = this.props.rows.filter(
+				(row) => {
+					return true
+				}
+			)
 		} else if (this.props.filterWord != "") {
-				console.log("FILTER EXISTS");
 				searchRes = this.props.rows.filter(
 				(row) => {
 					return row.office.toLowerCase().indexOf(this.props.filterWord) !== -1
@@ -37,14 +48,19 @@ class Table extends Component {
 		} else {
 			searchRes = this.props.rows.filter(
 				(row) => {
-					let nameString = row.firstName + " " + row.lastName
-					return nameString.toLowerCase().indexOf(this.props.searchWord) !== -1
+					return true
 				}
 			)
 		}
 
 	  return (
       <table>
+				<colgroup>
+				 <col style={s} />
+				 <col style={s} />
+				 <col style={s} />
+				 <col style={s} />
+			 </colgroup>
 			 <tbody>
 				 <tr className="tableCat">
 					 <th>Name</th>
@@ -57,13 +73,17 @@ class Table extends Component {
 						 <th>{row.firstName.concat(' ', row.lastName)}</th>
 						 <th>{row.title}</th>
 						 <th>{row.office}</th>
-						 <th>{row.email}</th>
+						 <th className="mailRow"><p className="rowEmail" >{row.email}</p> <a href={"mailto:" + row.email}><img src={mailImg} className="mailIcon" alt="mail-icon" height="30" width="30"/></a></th>
 					 </tr>
 				)}
 				</tbody>
       </table>
     )
   }
+}
+
+const mapDispatchToProps = dispatch => {
+  return bindActionCreators({updateFilter}, dispatch)
 }
 
 const mapStateToProps = state => {
@@ -74,4 +94,4 @@ const mapStateToProps = state => {
 	}
 }
 
-export default connect(mapStateToProps)(Table);
+export default connect(mapStateToProps, mapDispatchToProps)(Table);

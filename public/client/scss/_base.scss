@@ -1,7 +1,6 @@
 * {
   margin: 0;
   padding: 0;
-  font-family: Arial, sans-serif;
   box-sizing: border-box;
 }
 
@@ -19,6 +18,7 @@ li {
   justify-content: center;
   min-height: 100vh;
   width: 100vw;
+  background: #f1f2f6;
 }
 
 .home-wrapper {
@@ -31,23 +31,17 @@ li {
   }
 }
 
-.post-ul {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  li {
-    background: pink;
-    padding: 5px;
-    margin: 3px;
-    border-radius: 3px;
+.rowEmail {
+  display: none;
+  @include respond-to(medium) {
+    display: block;
   }
 }
 
-.hide {
-  display: none;
-}
-
-.searchIcon {
-  @include bg;
+.mailIcon {
+  display: block;
+  cursor: pointer;
+  @include respond-to(medium) {
+    display: none;
+  }
 }

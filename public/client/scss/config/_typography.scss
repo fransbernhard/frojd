@@ -1,28 +1,17 @@
-h1 {
-  margin: 0;
+* {
+  font-family: Arial, sans-serif;
 }
 
-h2 {
-  padding: 15px 0;
-  font-weight: lighter;
+th {
+  font-family: Lato, Arial, sans-serif;
+  font-weight: 300;
 }
 
-h3 {
-  font-size: 1rem;
-  padding-bottom: 5px;
-  text-transform: uppercase;
-  letter-spacing: 1.5px;
-}
-
-a {
-  text-decoration: none;
-  letter-spacing: 2px;
-	color: map-get($colors, black);
-  text-align: center;
-}
-
-p {
-  font-size: 0.9rem;
-  letter-spacing: 1px;
-  line-height: 1.6rem;
+.tableCat {
+  th {
+    font-weight: bold;
+    font-family: "Comfortaa", Arial, sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+  }
 }

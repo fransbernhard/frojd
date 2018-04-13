@@ -1,16 +1,10 @@
 import React, { Component } from 'react'
-import image from '../../img/search.png';
-
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+
 import { updateSearch, updateFilter } from '../redux/actions';
 
-var searchIconStyle = {
-  padding: "2rem",
-  backgroundImage: "url(" + image + ")"
-}
-
-var styli = {
+var dropDownStyle = {
 	width: '200px',
 	height: '52px'
 }
@@ -19,7 +13,6 @@ class Header extends Component {
 
   constructor(props){
     super(props)
-    // this.handleFilterClick = this.handleFilterClick.bind(this)
     this.handleSearchInput = this.handleSearchInput.bind(this)
     this.handleFilterChange = this.handleFilterChange.bind(this)
   }
@@ -33,11 +26,6 @@ class Header extends Component {
     this.props.updateFilter(e.target.value.toLowerCase())
   }
 
-  // handleFilterClick(e){
-  //   e.preventDefault()
-  //   console.log("FILTER CLICKED");
-  // }
-
   render(){
     return(
       <header>
@@ -50,7 +38,7 @@ class Header extends Component {
           />
         </div>
 
-        <select className="btn" style={styli} onChange={this.handleFilterChange}>
+        <select className="btn" style={dropDownStyle} onChange={this.handleFilterChange}>
           <option value="Offices">Offices</option>
           {this.props.office.map((off, i) =>
  						<option key={i} value={off}>{off}</option>

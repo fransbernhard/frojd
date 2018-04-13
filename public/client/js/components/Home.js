@@ -1,12 +1,10 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from "redux"
-import { fetchPostsSuccess, fetchOffices } from "../redux/actions/index"
 
-import image from '../../img/four.jpg';
+import { fetchPostsSuccess, fetchOffices } from "../redux/actions/index"
 import Table from './Table.js'
 import Header from './Header.js'
-
 import data from '../../data.json'
 
 class Home extends Component {

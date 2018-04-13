@@ -1,5 +1,6 @@
 import * as types from "../action-types/index";
 
+// Get all rows
 export const fetchPostsSuccess = payload => {
   return {
     type: types.FETCH_POSTS_SUCCESS,
@@ -7,29 +8,7 @@ export const fetchPostsSuccess = payload => {
   }
 }
 
-export const fetchOfficePostsSuccess = payload => {
-  return {
-    type: types.FETCH_POSTS_SUCCESS,
-    payload
-  }
-}
-
-
-
-// export const update = (SEARCH, STATUS) => {
-//   return (dispatch) => {
-//     if(STATUS == 'filter'){
-//       console.log("FILTER: " + STATUS);
-//       // dispatch(searchs(SEARCH))
-//     } else if (STATUS == 'search'){
-//       console.log("SEARCH: " + STATUS);
-//       // dispatch(fetchPostsSuccess(SEARCH))
-//     } else {
-//       console.log('no entry');
-//     }
-//   }
-// }
-
+// Update searchword state
 export const updateSearch = payload => {
   return {
     type: types.UPDATE_SEARCHWORD,
@@ -37,13 +16,34 @@ export const updateSearch = payload => {
   }
 }
 
+// Update filterWord state
 export const updateFilter = payload => {
+  return dispatch => {
+    if(payload == "offices"){
+      dispatch(notUpdateFilt())
+    } else {
+      dispatch(updateFilt(payload))
+    }
+  }
+}
+
+const notUpdateFilt = () => {
+  console.log("NOT UPDATE FILTER");
+  return {
+    type: types.UPDATE_FILTER,
+    payload: []
+  }
+}
+
+const updateFilt = payload => {
+  console.log("UPDATE FILTER");
   return {
     type: types.UPDATE_FILTER,
     payload
   }
 }
 
+// Get all offices
 export const fetchOffices = payload => {
   var allOffices = []
   payload.map(pay =>
