@@ -1,21 +1,48 @@
-import React, {Component} from 'react';
-import { connect } from "react-redux";
+import React, {Component} from 'react'
+import { connect } from "react-redux"
 
 class Table extends Component {
-	render(){
-		let searchRes = this.props.rows.filter(
-			(row) => {
-				let nameString = row.firstName + " " + row.lastName
-				return nameString.toLowerCase().indexOf(this.props.searchWord) !== -1
-			}
-		)
 
-		let filteredResult = this.props.rows.filter(
-			(row) => {
-				return row.office.toLowerCase().indexOf(this.props.filterWord) !== -1
-			}
-		)
-		
+	render(){
+		let searchRes
+
+		if (this.props.filterWord != "" && this.props.searchWord != "") {
+			console.log("BOTH EXISTS");
+			searchRes = this.props.rows.filter(
+				(row) => {
+					let nameString = row.firstName + " " + row.lastName
+					if(nameString.toLowerCase().indexOf(this.props.searchWord) !== -1 && row.office.toLowerCase().indexOf(this.props.filterWord) !== -1) {
+						return true
+					} else {
+						return false
+					}
+				}
+			)
+		} else if(this.props.searchWord != ""){
+			console.log("SEARCHWORK EXISTS");
+			searchRes = this.props.rows.filter(
+				(row) => {
+					let nameString = row.firstName + " " + row.lastName
+					console.log("HEHE: " + nameString.toLowerCase().indexOf(this.props.searchWord) !== -1);
+					return nameString.toLowerCase().indexOf(this.props.searchWord) !== -1
+				}
+			)
+		} else if (this.props.filterWord != "") {
+				console.log("FILTER EXISTS");
+				searchRes = this.props.rows.filter(
+				(row) => {
+					return row.office.toLowerCase().indexOf(this.props.filterWord) !== -1
+				}
+			)
+		} else {
+			searchRes = this.props.rows.filter(
+				(row) => {
+					let nameString = row.firstName + " " + row.lastName
+					return nameString.toLowerCase().indexOf(this.props.searchWord) !== -1
+				}
+			)
+		}
+
 	  return (
       <table>
 			 <tbody>
@@ -25,14 +52,14 @@ class Table extends Component {
 					 <th>Office</th>
 					 <th>Email</th>
 				 </tr>
-				 {searchRes.map((row, i) =>
-						<tr key={i}>
-							<th>{row.firstName.concat(' ', row.lastName)}</th>
-							<th>{row.title}</th>
-							<th>{row.office}</th>
-							<th>{row.email}</th>
-						</tr>
-					)}
+				{searchRes.map((row, i) =>
+					 <tr key={i}>
+						 <th>{row.firstName.concat(' ', row.lastName)}</th>
+						 <th>{row.title}</th>
+						 <th>{row.office}</th>
+						 <th>{row.email}</th>
+					 </tr>
+				)}
 				</tbody>
       </table>
     )

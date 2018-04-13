@@ -19,7 +19,7 @@ class Header extends Component {
 
   constructor(props){
     super(props)
-    this.handleFilterClick = this.handleFilterClick.bind(this)
+    // this.handleFilterClick = this.handleFilterClick.bind(this)
     this.handleSearchInput = this.handleSearchInput.bind(this)
     this.handleFilterChange = this.handleFilterChange.bind(this)
   }
@@ -33,10 +33,10 @@ class Header extends Component {
     this.props.updateFilter(e.target.value.toLowerCase())
   }
 
-  handleFilterClick(e){
-    e.preventDefault()
-    console.log("FILTER CLICKED");
-  }
+  // handleFilterClick(e){
+  //   e.preventDefault()
+  //   console.log("FILTER CLICKED");
+  // }
 
   render(){
     return(
@@ -51,12 +51,11 @@ class Header extends Component {
         </div>
 
         <select className="btn" style={styli} onChange={this.handleFilterChange}>
+          <option value="Offices">Offices</option>
           {this.props.office.map((off, i) =>
  						<option key={i} value={off}>{off}</option>
  					)}
         </select>
-
-        <button className="btn" onClick={this.handleFilterClick}>Filter</button>
       </header>
     )
   }
