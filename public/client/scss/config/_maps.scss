@@ -1,8 +1,8 @@
 $colors: (
-  whiteOpacity: rgba(255,255,255,0.8),
-  blackOpacity: rgba(0,0,0,0.8),
+  backgroundCol: rgb(241, 242, 246),
+  tableHeaderCol: rgb(162, 155, 254),
   pinkOpacity: rgba(255,192,203, 0.7),
-  darkGreen: #121f1f
+  tableLineCol: rgb(94, 94, 94)
 );
 
 @function colors($key: 'white') {

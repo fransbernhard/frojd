@@ -16,14 +16,14 @@ th {
 }
 
 .tableCat {
-  background: #a29bfe;
+  background: map-get($colors, tableHeaderCol);
   th {
     padding: 1.5rem 0.9rem;
   }
 }
 
 table, th {
-  border-bottom: 1px solid darkgrey;
+  border-bottom: 1px solid map-get($colors, tableLineCol);
   border-collapse: collapse;
   p {
     font-family: Lato, Arial, sans-serif;

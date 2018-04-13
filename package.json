@@ -1,7 +1,7 @@
 {
-  "name": "willskill",
+  "name": "frojs",
   "version": "1.0.0",
-  "description": "Task for Will & Skill",
+  "description": "Task for Fröjd",
   "main": "app.js",
   "scripts": {
     "start": "rimraf build-dev && NODE_ENV=development webpack --config=webpack/config.dev.js && node ./public/server/server.js",

@@ -16,9 +16,8 @@ li {
   display: flex;
   align-items: flex-start;
   justify-content: center;
-  min-height: 100vh;
-  width: 100vw;
-  background: #f1f2f6;
+  @include fullSizeWH;
+  background: map-get($colors, backgroundCol);
 }
 
 .home-wrapper {

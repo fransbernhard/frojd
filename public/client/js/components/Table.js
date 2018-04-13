@@ -1,11 +1,9 @@
 import React, {Component} from 'react'
 import { connect } from "react-redux"
-import { bindActionCreators } from "redux"
-import { updateFilter } from "../redux/actions/index"
 
 import mailImg from '../../img/mail-icon.png'
 
-var s = {
+var columnWidth = {
 	width: '25%'
 }
 
@@ -56,10 +54,10 @@ class Table extends Component {
 	  return (
       <table>
 				<colgroup>
-				 <col style={s} />
-				 <col style={s} />
-				 <col style={s} />
-				 <col style={s} />
+				 <col style={columnWidth} />
+				 <col style={columnWidth} />
+				 <col style={columnWidth} />
+				 <col style={columnWidth} />
 			 </colgroup>
 			 <tbody>
 				 <tr className="tableCat">
@@ -82,10 +80,6 @@ class Table extends Component {
   }
 }
 
-const mapDispatchToProps = dispatch => {
-  return bindActionCreators({updateFilter}, dispatch)
-}
-
 const mapStateToProps = state => {
   return {
 		rows: state.rows,
@@ -94,4 +88,4 @@ const mapStateToProps = state => {
 	}
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Table);
+export default connect(mapStateToProps)(Table);
